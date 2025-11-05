@@ -1,6 +1,6 @@
-import 'package:docker_test/application/common/common_provider.dart';
 import 'package:mineral/api.dart';
 import 'package:mineral_cache/providers/memory.dart';
+import 'package:mineralbot/application/common/common_provider.dart';
 
 void main(_, port) async {
   print('Hello 🚀');
@@ -8,11 +8,17 @@ void main(_, port) async {
   final client = ClientBuilder()
       .setCache(MemoryProvider.new)
       .registerProvider(CommonProvider.new)
-      .setHmrDevPort(port).build();
+      .setHmrDevPort(port)
+      .build();
 
   client.events.server.serverCreate((server) async {
     client.logger.info('${server.name} was created !');
   });
+
+  client.events.ready((bot) async {
+    client.logger.info('Bot is ready as ${bot.username}!');
+  });
+
 
   await client.init();
 }

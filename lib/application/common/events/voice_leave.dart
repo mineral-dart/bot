@@ -19,7 +19,7 @@ final class VoiceLeave extends VoiceLeaveEvent with State {
     final channel = await before.resolveChannel();
     if (channel == null) return;
 
-    if (channel.voices.length == 0) {
+    if (channel.members.length == 0) {
       await demand.channel.delete(reason: "Voice demand left");
       voiceDemand.remove(before.channelId!);
     }

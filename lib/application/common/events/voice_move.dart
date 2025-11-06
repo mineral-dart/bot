@@ -43,7 +43,7 @@ final class VoiceMove extends VoiceMoveEvent with State {
 
       if (channel == null) return;
 
-      if (channel.voices.length == 0) {
+      if (channel.members.length == 0) {
         await demand.channel.delete(reason: "Voice demand left");
         voiceDemand.remove(before.channelId!);
       }

@@ -9,7 +9,7 @@ final class CommonConfig {
     required this.welcomeChannelId
   });
 
-  factory CommonConfig.fromYml(final payload) {
-    return CommonConfig(parentId: payload['parentId'], initChannelId: payload['initChannelId'], welcomeChannelId: payload['welcomeChannelId']);
+  factory CommonConfig.of(final payload) {
+    return CommonConfig(parentId: payload['voice']['parent_id'], initChannelId: payload['voice']['init_channel_id'], welcomeChannelId: payload['welcome_channel_id']);
   }
 }

@@ -6,6 +6,7 @@ import 'package:mineral/utils.dart';
 import 'package:mineralbot/application/common/entities/voice_config.dart';
 import 'package:mineralbot/application/common/events/voice_join.dart';
 import 'package:mineralbot/application/common/events/voice_leave.dart';
+import 'package:mineralbot/application/common/events/voice_move.dart';
 import 'package:mineralbot/application/common/events/welcome_event.dart';
 import 'package:mineralbot/application/common/states/voice_demand_state.dart';
 
@@ -17,6 +18,7 @@ final class CommonProvider extends Provider with State {
 
     _client.register(VoiceJoin.new);
     _client.register(VoiceLeave.new);
+    _client.register(VoiceMove.new);
     _client.register(WelcomeEvent.new);
   }
 

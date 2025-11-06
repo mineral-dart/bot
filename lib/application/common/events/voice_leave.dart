@@ -16,9 +16,12 @@ final class VoiceLeave extends VoiceLeaveEvent with State {
 
     if (demand == null) return;
 
-    if (demand.owner.id != before.userId) return;
+    final channel = await before.resolveChannel();
+    if (channel == null) return;
 
-    await demand.channel.delete(reason: "Voice demand left");
-    voiceDemand.remove(before.channelId!);
+    if (channel.voices.length == 0) {
+      await demand.channel.delete(reason: "Voice demand left");
+      voiceDemand.remove(before.channelId!);
+    }
   }
 }
